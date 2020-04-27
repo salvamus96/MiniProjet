@@ -1,4 +1,4 @@
-package allibe_TPArbreAVL;
+package matrice;
 import java.util.*;
 import java.io.*;
 
@@ -22,11 +22,11 @@ public class Matrice{
 		return;
 	}
 	
-	public void affiche() {
-		System.out.println("Nombre de villes:" + this.taille);
+	public void afficheMatrice() {
+		System.out.println("Nombre de villes: " + this.taille);
 		for(int i = 0; i < this.taille; i++) {
 			for(int j = 0; j < this.taille; j++) {
-				System.out.print(this.distances[i][j] + " ");
+				System.out.print(this.distances[i][j] + "\t ");
 			}
 			System.out.println();
 		}
