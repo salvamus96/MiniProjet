@@ -11,6 +11,7 @@ public class Executable {
 		System.out.println("test");
 		Matrice matrice = new Matrice("TSP005");
 		matrice.afficheMatrice();
+		matrice.reduction();
 	}
 
 }
