@@ -8,6 +8,7 @@ import java.io.IOException;
 public class Executable {
 
 	public static void main(String[] args) throws IOException {
+		System.out.println("test");
 		Matrice matrice = new Matrice("TSP005");
 		matrice.afficheMatrice();
 	}
