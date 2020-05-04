@@ -25,7 +25,7 @@ public class Matrice{
 		
 		for(int i = 0; i < this.taille; i++) {
 			for(int j = 0; j < this.taille; j++) {
-				int current = lecteur.nextInt()
+				int current = lecteur.nextInt();
 				this.distances[i][j] = current;
 				if(current > this.infini) {
 					this.infini = current;
@@ -51,6 +51,7 @@ public class Matrice{
 	
 	public int recherche_max_colonne(int i) {
 		int max_col = 0;
+		int current = 0;
 		for(int j = 0; j < this.taille; j++) {
 			current = this.distances[j][i];
 			if((current > max_col)&&(current != this.infini)) {
@@ -60,7 +61,7 @@ public class Matrice{
 		return max_col;
 	}
 	
-	public int reduction_colonne() {
+	public int reduction() {
 		for(int i = 0;i < this.taille; i++) {
 			System.out.println(this.recherche_max_colonne(i));
 		}
