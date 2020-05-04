@@ -9,6 +9,7 @@ public class Matrice{
 	private int taille;
 	private int[][] distances;
 	
+	private int distance_min;
 	private int infini;
 	
 /**
@@ -21,6 +22,7 @@ public class Matrice{
 		
 		this.taille = lecteur.nextInt();
 		this.distances = new int[taille][taille];
+		
 		this.infini = 0;
 		
 		for(int i = 0; i < this.taille; i++) {
@@ -61,9 +63,53 @@ public class Matrice{
 		return max_col;
 	}
 	
+
+	public int recherche_max_ligne(int j) {
+		int max_col = 0;
+		int current = 0;
+		for(int i = 0; i < this.taille; i++) {
+			current = this.distances[j][i];
+			if((current > max_col)&&(current != this.infini)) {
+				max_col = current;
+			}
+		}
+		return max_col;
+	}
+
+	public int recherche_min_colonne(int i) {
+		int min_col = this.distances[0][i];
+		int current = 0;
+		for(int j = 1; j < this.taille; j++) {
+			current = this.distances[j][i];
+			if(current < min_col) {
+				min_col = current;
+			}
+		}
+		return min_col;
+	}
+	
+	public int recherche_min_ligne(int j) {
+		int min_col = this.distances[j][0];
+		int current = 0;
+		for(int i = 1; i < this.taille; i++) {
+			current = this.distances[j][i];
+			if(current < min_col) {
+				min_col = current;
+			}
+		}
+		return min_col;
+	}
+	
 	public int reduction() {
 		for(int i = 0;i < this.taille; i++) {
-			System.out.println(this.recherche_max_colonne(i));
+			int a = this.recherche_max_colonne(i);
+			int b = this.recherche_min_colonne(i);
+			System.out.println("Colonne :" + i + " | Max : " + a +" / Min : " + b);
+		}
+		for(int i = 0;i < this.taille; i++) {
+			int a = this.recherche_max_ligne(i);
+			int b = this.recherche_min_ligne(i);
+			System.out.println("Ligne :" + i + " | Max : " + a +" / Min : " + b);
 		}
 		return 0;
 	}
