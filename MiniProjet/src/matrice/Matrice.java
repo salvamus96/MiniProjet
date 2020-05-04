@@ -51,6 +51,11 @@ public class Matrice{
 		return;
 	}
 	
+	/**
+	 * Methode renvoyant le plus grand element de la colonne i de la matrice (sans considerer "l'infini".
+	 * @param i colonne
+	 * @return plus grand entier de la colonne i;
+	 */
 	public int recherche_max_colonne(int i) {
 		int max_col = 0;
 		int current = 0;
@@ -63,7 +68,11 @@ public class Matrice{
 		return max_col;
 	}
 	
-
+	/**
+	 * Methode renvoyant le plus grand element de la ligne j de la matrice (sans considerer "l'infini".
+	 * @param j ligne
+	 * @return plus grand entier de la ligne j;
+	 */
 	public int recherche_max_ligne(int j) {
 		int max_col = 0;
 		int current = 0;
