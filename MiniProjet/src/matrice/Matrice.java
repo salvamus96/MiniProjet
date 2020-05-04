@@ -37,6 +37,14 @@ public class Matrice{
 		return;
 	}
 	
+	public Matrice(int[][] tab, int taille, int infini, int distance_min){
+		this.distances = tab;
+		this.taille = taille;
+		this.infini = infini;
+		this.distance_min = distance_min;
+		return;
+	}
+	
 	/**
 	 * Cette methode permet d'afficher la matrice
 	 */
@@ -109,7 +117,7 @@ public class Matrice{
 		return min_col;
 	}
 	
-	public int reduction() {
+	public void affichage_min_max() {
 		for(int i = 0;i < this.taille; i++) {
 			int a = this.recherche_max_colonne(i);
 			int b = this.recherche_min_colonne(i);
@@ -120,8 +128,54 @@ public class Matrice{
 			int b = this.recherche_min_ligne(i);
 			System.out.println("Ligne :" + i + " | Max : " + a +" / Min : " + b);
 		}
-		return 0;
+		return;
 	}
 	
+	public void reduxtion() {
+		for(int i = 0; i < this.taille; i++) {
+			int min_col = this.recherche_min_colonne(i);
+			this.distance_min = this.distance_min + min_col;
+			for(int j = 0; j < this.taille; j++) {
+				if(this.distances[j][i] != this.infini) {
+					this.distances[j][i] = this.distances[j][i] - min_col;
+				}
+			}
+		}
+		for(int j = 0; j < this.taille; j++) {
+			int min_lin = this.recherche_min_ligne(j);
+			this.distance_min = this.distance_min + min_lin;
+			for(int i = 0; i < this.taille; i++) {
+				if(this.distances[j][i] != this.infini) {
+					this.distances[j][i] = this.distances[j][i] - min_lin;
+				}
+			}
+		}
+		return;
+	}
+	
+	public Matrice retire(int i, int j) {
+		if(this.taille <= 1) {
+			return null;
+		}
+		int[][] tab = new int[this.taille - 1][this.taille - 1];
+		int index_i = 0;
+		int index_j = 0;
+		for(int a = 0; a < this.taille; a++) {
+			if(a != i) {
+				for(int b = 0; b < this.taille; b++) {
+					if(b != j) {
+						System.out.println(tab[index_i][index_j]);
+						System.out.println(this.distances[i][j]);
+						tab[index_i][index_j] = this.distances[a][b];
+						index_j++;
+					}
+				}
+				index_i++;
+				index_j = 0;
+			}
+		}
+		Matrice reduite = new Matrice(tab, this.taille - 1, this.infini, this.distance_min);
+		return reduite;
+	}
 	
 }
